@@ -92,3 +92,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/
+/weights_300x300_old.hdf5
+/weights_SSD300.hdf5
+/data/anno_full.lnk
+/data/JAAD_frames.lnk
+/checkpoints/weights.01-0.06.hdf5
+/checkpoints/weights.01-2.14.hdf5

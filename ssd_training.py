@@ -1,7 +1,7 @@
 """SSD training utils."""
 
 import tensorflow as tf
-
+import keras.losses
 
 class MultiboxLoss(object):
     """Multibox loss with some helper functions.
@@ -63,8 +63,10 @@ class MultiboxLoss(object):
             softmax_loss: Softmax loss, tensor of shape (?, num_boxes).
         """
         y_pred = tf.maximum(tf.minimum(y_pred, 1 - 1e-15), 1e-15)
-        softmax_loss = -tf.reduce_sum(y_true * tf.log(y_pred),
-                                      axis=-1)
+        # softmax_loss = -tf.reduce_sum(y_true * tf.log(y_pred),
+        #                               axis=-1)
+        # softmax_loss = tf.losses.sigmoid_cross_entropy(y_true, y_pred)
+        softmax_loss = keras.losses.binary_crossentropy(y_true, y_pred)
         return softmax_loss
 
     def compute_loss(self, y_true, y_pred):

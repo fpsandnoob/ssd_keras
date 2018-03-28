@@ -111,7 +111,7 @@ class BBoxUtility(object):
         encoded_box[:, :2][assign_mask] /= assigned_priors_wh
         encoded_box[:, :2][assign_mask] /= assigned_priors[:, -4:-2]
         encoded_box[:, 2:4][assign_mask] = np.log(box_wh /
-                                                  assigned_priors_wh)
+                                                  assigned_priors_wh + 1e-7)
         encoded_box[:, 2:4][assign_mask] /= assigned_priors[:, -2:]
         return encoded_box.ravel()
 
